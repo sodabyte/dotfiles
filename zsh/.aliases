@@ -1,0 +1,27 @@
+# zsh
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+
+# termux shortcut
+alias reload="termux-reload-settings"
+
+# refresh
+alias refresh="source ~/.zshrc"
+
+# python
+alias py="python"
+
+# neovim
+alias vim="nvim"
+alias vimf="cd ~/.config/nvim"
+alias vimc="vim ~/.config/nvim/init.lua"
+alias vimp="cd ~/.config/nvim/lua/plugins"
+
+# gitui theme
+alias gitui="gitui -t mocha.ron"
+
+# internal & sd card storage
+alias in="cd /storage/emulated/0/"
+
+# update & upgrade
+alias upg="apt update && apt upgrade -y"
