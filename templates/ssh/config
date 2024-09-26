@@ -1,0 +1,28 @@
+# SSH Config Template for Multiple Accounts
+
+# Personal GitHub account
+# Replace <personal-key> with the name of your actual personal SSH key file (e.g., id_rsa_personal)
+# Replace <personal-username> with your actual GitHub username
+Host github.com-personal
+    HostName github.com               # GitHub's server
+    User git                          # The default user for Git-based operations
+    IdentityFile ~/.ssh/<personal-key> # Path to your personal SSH key file (e.g., ~/.ssh/id_rsa_personal)
+    IdentitiesOnly yes                # Ensure only the specified identity is used
+
+# School GitHub account
+# Replace <school-key> with the name of your actual school SSH key file (e.g., id_rsa_school)
+# Replace <school-username> with your actual GitHub username for school
+Host github.com-school
+    HostName github.com               # GitHub's server
+    User git                          # The default user for Git-based operations
+    IdentityFile ~/.ssh/<school-key>   # Path to your school SSH key file (e.g., ~/.ssh/id_rsa_school)
+    IdentitiesOnly yes                # Ensure only the specified identity is used
+
+# GitLab account
+# Replace <gitlab-key> with the name of your actual GitLab SSH key file (e.g., id_rsa_gitlab)
+# Replace <gitlab-username> with your actual GitLab username
+Host gitlab.com
+    HostName gitlab.com               # GitLab's server
+    User git                          # The default user for Git-based operations
+    IdentityFile ~/.ssh/<gitlab-key>   # Path to your GitLab SSH key file (e.g., ~/.ssh/id_rsa_gitlab)
+    IdentitiesOnly yes                # Ensure only the specified identity is used
