@@ -14,7 +14,7 @@ alias py="python"
 # neovim
 alias vim="nvim"
 alias vimf="cd ~/.config/nvim"
-alias vimc="vim ~/.config/nvim/init.lua"
+alias vimc="nvim ~/.config/nvim/init.lua"
 alias vimp="cd ~/.config/nvim/lua/plugins"
 
 # gitui theme
@@ -25,3 +25,6 @@ alias in="cd /storage/emulated/0/"
 
 # update & upgrade
 alias upg="apt update && apt upgrade -y"
+
+alias dot="cd ~/dotfiles"
+alias neoconf="nvim ~/.config/neofetch/neofetch.conf"
