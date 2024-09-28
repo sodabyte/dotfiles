@@ -8,7 +8,8 @@
 [alias]
 	st = status
 	ci = commit
-	cm = commit -m
+  cm = commit -m
+  am = commit --amend -m
 	lg = log
 	co = checkout
 	br = branch
