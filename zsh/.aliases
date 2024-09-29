@@ -11,6 +11,9 @@ alias refresh="source ~/.zshrc"
 # python
 alias py="python"
 
+# eza
+alias ls="eza --icons --group-directories-first --git -1"
+
 # neovim
 alias vim="nvim"
 alias vimf="cd ~/.config/nvim"
