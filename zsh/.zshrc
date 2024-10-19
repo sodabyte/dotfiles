@@ -19,5 +19,6 @@ source <(fzf --zsh)
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 export EDITOR=nvim
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 eval "$(starship init zsh)"
