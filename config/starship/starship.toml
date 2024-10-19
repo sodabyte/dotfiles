@@ -1,3 +1,8 @@
+# ~/.config/starship.toml
+
+[username]
+disabled = true
+
 [aws]
 symbol = "  "
 
