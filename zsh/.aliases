@@ -1,12 +1,27 @@
 # zsh
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias zshconf="nvim ~/.zshrc"
 
-# termux shortcut
 alias reload="termux-reload-settings"
-
-# refresh
 alias refresh="source ~/.zshrc"
+alias c="clear"
+
+# directories navigation
+alias ..="cd .." # go up one directory
+alias ...="cd ../.." # go up two directories
+alias cdb='cd $(ls -d */ | fzf)' #cd using fuzzy search
+
+# function to quickly create a new directory and navigate into it
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+# compressed a directory
+compress() {
+    tar -czf "$1.tar.gz" "$1" && echo "Compressed $1 to $1.tar.gz"
+}
+
+alias mv='mv -i' # -i flag to prompt before overwriting/deleting files
+alias cp='cp -i'
+alias rm='rm -i'
+alias rmd='rm -rf' # force delete directory
 
 # python
 alias py="python"
@@ -16,8 +31,9 @@ alias ls="eza --icons --group-directories-first --git -1"
 
 # neovim
 alias vim="nvim"
+alias vimi="nvim ~/.config/nvim/init.lua"
 alias vimf="cd ~/.config/nvim"
-alias vimc="nvim ~/.config/nvim/init.lua"
+alias vimc="cd ~/.config/nvim/config"
 alias vimp="cd ~/.config/nvim/lua/plugins"
 
 # gitui theme
@@ -25,9 +41,10 @@ alias gitui="gitui -t mocha.ron"
 
 # internal & sd card storage
 alias in="cd /storage/emulated/0/"
+alias sd="cd /storage/6F7D-F7F7"
 
 # update & upgrade
-alias upg="apt update && apt upgrade -y"
+alias update="apt update && apt upgrade -y"
 
 alias dot="cd ~/dotfiles"
 alias neoconf="nvim ~/.config/neofetch/neofetch.conf"
