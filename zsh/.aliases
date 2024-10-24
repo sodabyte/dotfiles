@@ -5,6 +5,17 @@ alias reload="termux-reload-settings"
 alias refresh="source ~/.zshrc"
 alias c="clear"
 
+# TMUX
+
+# start new tmux session or attach to an existing one
+alias ta='tmux attach-session -t'
+
+# create a new tmux session with a name
+alias tn='tmux new-session -s'
+
+# list all tmux sessions
+alias tls='tmux list-sessions'
+
 # directories navigation
 alias ..="cd .." # go up one directory
 alias ...="cd ../.." # go up two directories
