@@ -4,6 +4,7 @@ alias zshconf="nvim ~/.zshrc"
 alias reload="termux-reload-settings"
 alias refresh="source ~/.zshrc"
 alias c="clear"
+alias q="exit"
 
 # TMUX
 
