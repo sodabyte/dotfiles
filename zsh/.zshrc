@@ -21,3 +21,4 @@ export EDITOR=nvim
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
