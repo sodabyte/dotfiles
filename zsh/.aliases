@@ -40,12 +40,13 @@ alias py="python"
 
 # eza
 alias ls="eza --icons --group-directories-first --git -1"
+alias fzfile="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' --layout=reverse --preview-window=top:20 | xargs nvim"
 
 # neovim
 alias vim="nvim"
 alias vimi="nvim ~/.config/nvim/init.lua"
 alias vimf="cd ~/.config/nvim"
-alias vimc="cd ~/.config/nvim/config"
+alias vimc="cd ~/.config/nvim/lua/config"
 alias vimp="cd ~/.config/nvim/lua/plugins"
 
 # gitui theme
