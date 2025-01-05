@@ -19,6 +19,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 export EDITOR=nvim
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export RCLONE_CONFIG_PASS=$(pass show rclone/config)
+export RESTIC_PASSWORD=$(pass show restic/restic-repositories)
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

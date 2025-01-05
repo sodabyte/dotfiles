@@ -15,5 +15,3 @@
   pl = pull
   ph = push
   df = diff
-[credential]
-  helper = cache --timeout=604800

@@ -61,3 +61,10 @@ alias update="apt update && apt upgrade -y"
 
 alias dot="cd ~/dotfiles"
 alias neoconf="nvim ~/.config/neofetch/neofetch.conf"
+
+# chroot
+alias deb="~/scripts/chroot/startxfce4_chrootDebian.sh"
+alias debcli="su -c 'sh /data/local/tmp/start_debian_no_gui.sh'"
+
+alias clip="termux-clipboard-set"
+alias sshconf="nvim ~/.ssh/config"
