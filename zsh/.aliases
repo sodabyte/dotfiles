@@ -1,19 +1,21 @@
-# zsh
+# configuration
 alias zshconf="nvim ~/.zshrc"
+alias sshconf="nvim ~/.ssh/config"
 
+# termux
 alias reload="termux-reload-settings"
+alias clip="termux-clipboard-set"
+alias update="pkg update && pkg upgrade -y"
+
 alias refresh="source ~/.zshrc"
 alias c="clear"
 alias q="exit"
 
 # TMUX
-
 # start new tmux session or attach to an existing one
 alias ta='tmux attach-session -t'
-
 # create a new tmux session with a name
 alias tn='tmux new-session -s'
-
 # list all tmux sessions
 alias tls='tmux list-sessions'
 
@@ -35,36 +37,10 @@ alias cp='cp -i'
 alias rm='rm -i'
 alias rmd='rm -rf' # force delete directory
 
-# python
-alias py="python"
-
 # eza
 alias ls="eza --icons --group-directories-first --git -1"
 alias fzfile="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' --layout=reverse --preview-window=top:20 | xargs nvim"
 
-# neovim
-alias vim="nvim"
-alias vimi="nvim ~/.config/nvim/init.lua"
-alias vimf="cd ~/.config/nvim"
-alias vimc="cd ~/.config/nvim/lua/config"
-alias vimp="cd ~/.config/nvim/lua/plugins"
-
-# gitui theme
-alias gitui="gitui -t mocha.ron"
-
-# internal & sd card storage
-alias in="cd /storage/emulated/0/"
-alias sd="cd /storage/6F7D-F7F7"
-
-# update & upgrade
-alias update="apt update && apt upgrade -y"
-
-alias dot="cd ~/dotfiles"
-alias neoconf="nvim ~/.config/neofetch/neofetch.conf"
-
-# chroot
+# chroot starter
 alias deb="~/scripts/chroot/startxfce4_chrootDebian.sh"
 alias debcli="su -c 'sh /data/local/tmp/start_debian_no_gui.sh'"
-
-alias clip="termux-clipboard-set"
-alias sshconf="nvim ~/.ssh/config"
