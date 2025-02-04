@@ -44,3 +44,6 @@ alias fzfile="fzf --preview 'bat --color=always --style=numbers --line-range=:50
 # chroot starter
 alias deb="~/scripts/chroot/startxfce4_chrootDebian.sh"
 alias debcli="su -c 'sh /data/local/tmp/start_debian_no_gui.sh'"
+
+# termux desktop starter
+alias desktop="~/scripts/termux/start-termux-desktop.sh"
