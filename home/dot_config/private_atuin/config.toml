@@ -1,0 +1,6 @@
+style = "full"
+show_help = false
+show_tabs = false
+enter_accept = true
+[sync]
+records = true

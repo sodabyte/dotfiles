@@ -1,0 +1,23 @@
+[init]
+  defaultBranch = main
+
+[user]
+  name = sodabyte
+  email = 181641501+sodabyte@users.noreply.github.com
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[include]
+  path = "~/.config/git/catppuccin.gitconfig"
+
+[delta]
+  navigate = true
+  line-numbers = true
+  features = catppuccin-mocha
+
+[merge]
+  conflictstyle = zdiff3
