@@ -37,7 +37,7 @@ fi
 
 # overwrite or create the file with the new ZDOTDIR value
 {{ if eq .chezmoi.os "linux" }}
-sudo echo "ZDOTDIR=$ZDOTDIR" > "$FILE_PATH"
+echo "ZDOTDIR=$ZDOTDIR" | sudo tee "$FILE_PATH" > /dev/null
 {{ else if eq .chezmoi.os "android" }}
 echo "ZDOTDIR=$ZDOTDIR" > "$FILE_PATH"
 {{ end -}}
