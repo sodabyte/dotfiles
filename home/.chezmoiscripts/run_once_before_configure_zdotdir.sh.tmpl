@@ -1,36 +1,48 @@
+{{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
+{{ else if eq .chezmoi.os "android" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+{{ end -}}
 
-{{- if eq .chezmoi.os "linux" -}}
+GREEN="\033[32m"
+RED="\033[31m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+RESET="\033[0m"
+
+{{ if eq .chezmoi.os "linux" }}
 FILE_PATH="/etc/zsh/zshenv"
-ZDOTDIR="/home/{{ chezmoi.username }}/.config/zsh"
-{{- else if eq .chezmoi.os "android" -}}
+ZDOTDIR="/home/{{ .chezmoi.username }}/.config/zsh"
+{{ else if eq .chezmoi.os "android" }}
 FILE_PATH="/data/data/com.termux/files/usr/etc/zshenv"
-ZDOTDIR="{{- .chezmoi.homeDir -}}/.config/zsh"
-{{- end -}}
+ZDOTDIR="{{ .chezmoi.homeDir }}/.config/zsh"
+{{ end -}}
 
 # check if the file exists
 if [[ -e "$FILE_PATH" ]]; then
-    echo "file already exists: $FILE_PATH"
-    echo "current content:"
+    echo -e "${GREEN}file already exists: $FILE_PATH${RESET}\n"
+    echo -e "${GREEN}current content:${RESET}"
     cat "$FILE_PATH"
+    echo
 
     # ask if the user wants to overwrite the file
-    read -p "do you want to overwrite this file with the new ZDOTDIR? (y/n): " answer
+    read -p "$(echo -e "${BLUE}do you want to overwrite this file with the new ZDOTDIR? (y/n): ${RESET}")" answer
     if [[ "$answer" != "y" ]]; then
-        echo "exiting without making changes."
+        echo -e "${GREEN}exiting without making changes.${RESET}\n"
         exit 0
     fi
 else
-    echo "file does not exist, proceeding to create it."
+    echo -e "${YELLOW}file does not exist, proceeding to create it.${RESET}\n"
 fi
 
 # overwrite or create the file with the new ZDOTDIR value
-{{- if eq .chezmoi.os "linux" -}}
-sudo tee "$FILE_PATH" > /dev/null <<< "ZDOTDIR=$ZDOTDIR"
-{{- else if eq .chezmoi.os "android" -}}
-tee "$FILE_PATH" > /dev/null <<< "ZDOTDIR=$ZDOTDIR"
-{{- end -}}
+{{ if eq .chezmoi.os "linux" }}
+sudo echo "ZDOTDIR=$ZDOTDIR" > "$FILE_PATH"
+{{ else if eq .chezmoi.os "android" }}
+echo "ZDOTDIR=$ZDOTDIR" > "$FILE_PATH"
+{{ end -}}
 
-echo "file $FILE_PATH has been overwritten with the new ZDOTDIR value."
-echo "content of the file:"
+echo -e "${GREEN}file $FILE_PATH has been overwritten with the new ZDOTDIR value.${RESET}\n"
+echo -e "${GREEN}content of the file:${RESET}"
 cat "$FILE_PATH"
+echo

@@ -1,6 +1,13 @@
+{{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
+{{ else if eq .chezmoi.os "android" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+{{- end }}
 
-PLUGIN_DIR="$HOME/.config/zsh/plugins"
+GREEN="\033[32m"
+RESET="\033[0m"
+
+PLUGIN_DIR="{{ .chezmoi.homeDir }}/.config/zsh/plugins"
 PLUGINS=(
     "zsh-users/zsh-autosuggestions"
     "zsh-users/zsh-syntax-highlighting"
@@ -14,9 +21,11 @@ for plugin in "${PLUGINS[@]}"; do
     plugin_dir="$PLUGIN_DIR/$plugin_name"
 
     if [[ ! -d "$plugin_dir" ]]; then
-        echo "cloning $plugin_name..."
+        echo -e "${GREEN}cloning $plugin_name...${RESET}"
         git clone "https://github.com/$plugin.git" "$plugin_dir"
     else
-        echo "$plugin_name is already installed."
+        echo -e "${GREEN}$plugin_name is already installed.${RESET}"
     fi
 done
+
+echo

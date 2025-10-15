@@ -1,0 +1,29 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+{{ else if eq .chezmoi.os "android" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+{{- end }}
+
+GREEN="\033[32m"
+RED="\033[31m"
+RESET="\033[0m"
+
+TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+
+# check if tpm is already installed
+if [[ -d "$TPM_DIR" ]]; then
+    echo -e "${GREEN}tmux plugin manager is already installed at $TPM_DIR. exiting...${RESET}\n"
+    exit 0
+fi
+
+# if not installed, clone the tpm repository
+echo -e "${GREEN}installing tmux plugin manager...${RESET}"
+git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+
+# check if the installation was successful
+if [[ $? -eq 0 ]]; then
+    echo -e "${GREEN}tmux plugin manager has been successfully installed.${RESET}\n"
+else
+    echo -e "${RED}failed to install tmux plugin manager.${RESET}"
+    exit 1
+fi
