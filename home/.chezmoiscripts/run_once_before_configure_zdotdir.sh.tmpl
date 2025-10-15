@@ -1,6 +1,12 @@
 #!/bin/bash
 
+{{- if eq .chezmoi.os "linux" -}}
 FILE_PATH="/etc/zsh/zshenv"
+ZDOTDIR="/home/{{ chezmoi.username }}/.config/zsh"
+{{- else if eq .chezmoi.os "android" -}}
+FILE_PATH="/data/data/com.termux/files/usr/etc/zshenv"
+ZDOTDIR="{{- .chezmoi.homeDir -}}/.config/zsh"
+{{- end -}}
 
 # check if the file exists
 if [[ -e "$FILE_PATH" ]]; then
@@ -18,17 +24,12 @@ else
     echo "file does not exist, proceeding to create it."
 fi
 
-# prompt for the USER variable
-read -p "enter the username for ZDOTDIR: " username
-
-# validate username input
-if [[ -z "$username" ]]; then
-    echo "username cannot be empty. exiting."
-    exit 1
-fi
-
 # overwrite or create the file with the new ZDOTDIR value
-echo "ZDOTDIR=/home/$username/.config/zsh" | sudo tee "$FILE_PATH" > /dev/null
+{{- if eq .chezmoi.os "linux" -}}
+sudo tee "$FILE_PATH" > /dev/null <<< "ZDOTDIR=$ZDOTDIR"
+{{- else if eq .chezmoi.os "android" -}}
+tee "$FILE_PATH" > /dev/null <<< "ZDOTDIR=$ZDOTDIR"
+{{- end -}}
 
 echo "file $FILE_PATH has been overwritten with the new ZDOTDIR value."
 echo "content of the file:"
