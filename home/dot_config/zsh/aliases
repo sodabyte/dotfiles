@@ -18,6 +18,20 @@ alias rmd="rm -rf"
 # chezmoi
 alias cm="chezmoi"
 
+function ctb() {
+  if [[ -z "$1" ]]; then
+    echo "usage: ctb <template-file>"
+    return 1
+  fi
+
+  if [[ ! -f "$1" ]]; then
+    echo "file not found: $1"
+    return 1
+  fi
+
+  cm execute-template < "$1" | bat -l bash
+}
+
 # yazi
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
