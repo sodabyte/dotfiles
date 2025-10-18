@@ -1,0 +1,71 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+{{- else if eq .chezmoi.os "android" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+{{- end }}
+
+{{ if eq .chezmoi.os "linux" -}}
+FILE_PATH="/etc/zsh/zshenv"
+ZDOTDIR_VALUE="/home/{{ .chezmoi.username }}/.config/zsh"
+{{- else if eq .chezmoi.os "android" -}}
+FILE_PATH="/data/data/com.termux/files/usr/bin/bash"
+ZDOTDIR_VALUE="/data/data/com.termux/files/home/.config/zsh"
+{{- end }}
+
+GREEN="\033[32m"
+RED="\033[31m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+RESET="\033[0m"
+
+echo -e "$GREEN\n[SETUP ZDOTDIR ENVIRONMENTAL VARIABLE]\n$RESET"
+
+if [[ -f "$FILE_PATH" ]]; then
+    if grep -q "ZDOTDIR=" "$FILE_PATH"; then
+        CURRENT_ZDOTDIR=$(grep "ZDOTDIR=" "$FILE_PATH" | cut -d '=' -f2)
+        echo -e "${YELLOW}ZDOTDIR is already set in the file: $CURRENT_ZDOTDIR${RESET}"
+        echo -ne "${BLUE}do you want to overwrite it? (y/n): ${RESET}"
+        read choice
+        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+            echo -e "${YELLOW}overwriting ZDOTDIR with $ZDOTDIR_VALUE${RESET}"
+            {{ if eq .chezmoi.os "linux" -}}
+            sudo sed -i "s|^ZDOTDIR=.*|ZDOTDIR=$ZDOTDIR_VALUE|" "$FILE_PATH"
+            {{- else if eq .chezmoi.os "android" -}}
+            sed -i "s|^ZDOTDIR=.*|ZDOTDIR=$ZDOTDIR_VALUE|" "$FILE_PATH"
+            {{- end }}
+            echo -e "${GREEN}ZDOTDIR updated to $ZDOTDIR_VALUE${RESET}"
+        else
+            echo -e "${GREEN}no changes made.${RESET}"
+        fi
+    else
+        echo -e "${YELLOW}ZDOTDIR is not set in the file.${RESET}"
+        echo -ne "${BLUE}do you want to add ZDOTDIR=$ZDOTDIR_VALUE to the file? (y/n): ${RESET}"
+        read choice
+        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+            echo -e "${YELLOW}appending ZDOTDIR=$ZDOTDIR_VALUE to $FILE_PATH${RESET}"
+            {{ if eq .chezmoi.os "linux" -}}
+            echo "ZDOTDIR=$ZDOTDIR_VALUE" | sudo tee -a "$FILE_PATH" > /dev/null
+            {{- else if eq .chezmoi.os "android" -}}
+            echo "ZDOTDIR=$ZDOTDIR_VALUE" | tee -a "$FILE_PATH" > /dev/null
+            {{- end }}
+            echo -e "${GREEN}ZDOTDIR added successfully.${RESET}"
+        else
+            echo -e "${GREEN}no changes made.${RESET}"
+        fi
+    fi
+else
+    echo -e "${YELLOW}the file $FILE_PATH does not exist.${RESET}"
+    echo -ne "${BLUE}do you want to create it and set ZDOTDIR=$ZDOTDIR_VALUE? (y/n): ${RESET}"
+    read choice
+    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+        echo -e "${YELLOW}creating $FILE_PATH and setting ZDOTDIR=$ZDOTDIR_VALUE${RESET}"
+        {{ if eq .chezmoi.os "linux" -}}
+        echo "ZDOTDIR=$ZDOTDIR_VALUE" | sudo tee "$FILE_PATH" > /dev/null
+        {{- else if eq .chezmoi.os "android" -}}
+        echo "ZDOTDIR=$ZDOTDIR_VALUE" | tee "$FILE_PATH" > /dev/null
+        {{- end }}
+        echo -e "${GREEN}file created and ZDOTDIR added.${RESET}"
+    else
+        echo -e "${GREEN}no changes made.${RESET}"
+    fi
+fi
