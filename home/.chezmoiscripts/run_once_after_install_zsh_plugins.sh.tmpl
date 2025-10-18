@@ -1,13 +1,16 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
-{{ else if eq .chezmoi.os "android" -}}
+{{- else if eq .chezmoi.os "android" -}}
 #!/data/data/com.termux/files/usr/bin/bash
 {{- end }}
 
 GREEN="\033[32m"
 RESET="\033[0m"
 
+echo -e "$GREEN\n[ZSH PLUGINS]\n$RESET"
+
 PLUGIN_DIR="{{ .chezmoi.homeDir }}/.config/zsh/plugins"
+
 PLUGINS=(
     "zsh-users/zsh-autosuggestions"
     "zsh-users/zsh-syntax-highlighting"
@@ -27,5 +30,3 @@ for plugin in "${PLUGINS[@]}"; do
         echo -e "${GREEN}$plugin_name is already installed.${RESET}"
     fi
 done
-
-echo

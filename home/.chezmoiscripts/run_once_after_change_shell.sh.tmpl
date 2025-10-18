@@ -1,6 +1,6 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
-{{ else if eq .chezmoi.os "android" -}}
+{{- else if eq .chezmoi.os "android" -}}
 #!/data/data/com.termux/files/usr/bin/bash
 {{- end }}
 
@@ -10,7 +10,10 @@ YELLOW="\033[33m"
 BLUE="\033[34m"
 RESET="\033[0m"
 
-read -p "$(echo -e "${BLUE}do you want to change your shell to zsh? (y/n): ${RESET}")" response
+echo -e "$GREEN\n[SETUP ZSH AS DEFAULT SHELL]\n$RESET"
+
+echo -ne "${BLUE}do you want to change your shell to zsh? (y/n): ${RESET}"
+read response
 
 if [[ ! "$response" =~ ^[yY]$ ]]; then
   echo -e "${GREEN}exiting the script.${RESET}"
@@ -25,7 +28,7 @@ if [[ "$CURRENT_SHELL" == "zsh" ]]; then
   exit 0
 fi
 
-echo -e "${GREEN}changing your shell to zsh...${RESET}"
+echo -e "${YELLOW}changing your shell to zsh...${RESET}"
 
 if ! command -v zsh &> /dev/null; then
   echo -e "${RED}zsh is not installed.${RESET}"
@@ -34,7 +37,7 @@ fi
 
 {{ if eq .chezmoi.os "linux" -}}
 chsh -s $(which zsh)
-{{ else if eq .chezmoi.os "android" -}}
+{{- else if eq .chezmoi.os "android" -}}
 chsh -s zsh
 {{- end }}
 
