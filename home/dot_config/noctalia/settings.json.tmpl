@@ -47,20 +47,23 @@
                     "showNetworkStats": false
                 },
                 {
-                    "hideMode": "hidden",
-                    "id": "MediaMini",
-                    "scrollingMode": "hover",
-                    "showAlbumArt": true,
-                    "showVisualizer": true,
-                    "visualizerType": "wave"
-                },
-                {
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
+                    "maxWidth": 145,
                     "scrollingMode": "hover",
                     "showIcon": true,
-                    "width": 145
+                    "useFixedWidth": false
+                },
+                {
+                    "hideMode": "hidden",
+                    "id": "MediaMini",
+                    "maxWidth": 145,
+                    "scrollingMode": "hover",
+                    "showAlbumArt": true,
+                    "showVisualizer": true,
+                    "useFixedWidth": false,
+                    "visualizerType": "wave"
                 }
             ],
             "right": [
@@ -81,10 +84,6 @@
                 {
                     "displayMode": "onhover",
                     "id": "Volume"
-                },
-                {
-                    "displayMode": "onhover",
-                    "id": "Microphone"
                 },
                 {
                     "displayMode": "onhover",
@@ -116,8 +115,11 @@
     "colorSchemes": {
         "darkMode": true,
         "generateTemplatesForPredefined": true,
+        "manualSunrise": "06:30",
+        "manualSunset": "18:30",
         "matugenSchemeType": "scheme-neutral",
         "predefinedScheme": "Monochrome",
+        "schedulingMode": "off",
         "useWallpaperColors": true
     },
     "controlCenter": {
@@ -164,10 +166,10 @@
                     "id": "Notifications"
                 },
                 {
-                    "id": "KeepAwake"
+                    "id": "PowerProfile"
                 },
                 {
-                    "id": "PowerProfile"
+                    "id": "KeepAwake"
                 },
                 {
                     "id": "NightLight"
@@ -179,7 +181,7 @@
         "backgroundOpacity": 0.9,
         "colorizeIcons": false,
         "displayMode": "exclusive",
-        "floatingRatio": 0.25,
+        "floatingRatio": 1,
         "monitors": [
             "DP-3"
         ],
@@ -189,15 +191,16 @@
             "zen",
             "firefox",
             "helium-browser",
-            "com.github.th_ch.youtube_music"
+            "com.github.th_ch.youtube_music",
             "obsidian",
             "gimp",
             "kitty",
             "dev.zed.Zed",
             "signal-desktop",
             "org.mozilla.Thunderbird",
-            "org.keepassxc.KeePassXC",
-        ]
+            "org.keepassxc.KeePassXC"
+        ],
+        "size": 1
     },
     "general": {
         "animationDisabled": false,
@@ -206,7 +209,9 @@
         "compactLockScreen": false,
         "dimDesktop": false,
         "forceBlackScreenCorners": false,
-        "radiusRatio": 0.7599999999999999,
+        "language": "",
+        "lockOnSuspend": true,
+        "radiusRatio": 0.75,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
         "showScreenCorners": false
@@ -218,6 +223,7 @@
     },
     "location": {
         "name": "Tokyo",
+        "showCalendarEvents": true,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": false,
@@ -236,25 +242,23 @@
         "nightTemp": "4000"
     },
     "notifications": {
-        "alwaysOnTop": false,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
-        "lastSeenTs": 1761571159000,
         "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
-            "DP-3"
         ],
         "normalUrgencyDuration": 8,
-        "respectExpireTimeout": true
+        "overlayLayer": true,
+        "respectExpireTimeout": false
     },
     "osd": {
-        "alwaysOnTop": false,
         "autoHideMs": 2000,
         "enabled": true,
         "location": "bottom",
         "monitors": [
-        ]
+        ],
+        "overlayLayer": true
     },
     "screenRecorder": {
         "audioCodec": "opus",
@@ -285,13 +289,15 @@
         "kcolorscheme": false,
         "kitty": false,
         "pywalfox": false,
-        "qt": false
+        "qt": false,
+        "vicinae": false
     },
     "ui": {
         "fontDefault": "Inter",
         "fontDefaultScale": 1,
         "fontFixed": "JetBrainsMono Nerd Font",
         "fontFixedScale": 1,
+        "panelsOverlayLayer": true,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -309,7 +315,7 @@
             }
         ],
         "randomEnabled": false,
-        "randomIntervalSec": 7200,
+        "randomIntervalSec": 300,
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
