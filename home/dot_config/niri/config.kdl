@@ -34,8 +34,8 @@ layout {
     // border is similar to the focus ring, but always visible.
     border {
         // off
-        width 2.3
-        active-color "#2c2c2c"
+        width 2
+        active-color "#3d3d3d"
         inactive-color "#1e1e1e"
         urgent-color "#c85858"
     }
@@ -43,11 +43,18 @@ layout {
     // drop shadows for windows.
     shadow {
         on
-        softness 30
+        softness 10
         spread 5
         offset x=0 y=5
         color "#0007"
     }
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Classic"
+    xcursor-size 20
+
+    hide-after-inactive-ms 3000
 }
 
 // autostart
@@ -100,7 +107,7 @@ window-rule {
 
 // enable rounded corners for all windows.
 window-rule {
-    geometry-corner-radius 12
+    geometry-corner-radius 8
     clip-to-geometry true
 }
 
