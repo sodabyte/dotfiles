@@ -11,3 +11,5 @@ chezmoi init sodabyte
 ![](assets/screenshot-1.png)
 
 ![](assets/screenshot-2.png)
+
+![](assets/screenshot-3.png)
