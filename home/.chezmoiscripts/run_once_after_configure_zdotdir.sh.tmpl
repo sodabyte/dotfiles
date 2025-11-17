@@ -8,7 +8,7 @@
 FILE_PATH="/etc/zsh/zshenv"
 ZDOTDIR_VALUE="/home/{{ .chezmoi.username }}/.config/zsh"
 {{- else if eq .chezmoi.os "android" -}}
-FILE_PATH="/data/data/com.termux/files/usr/bin/bash"
+FILE_PATH="/data/data/com.termux/files/usr/etc/zshenv"
 ZDOTDIR_VALUE="/data/data/com.termux/files/home/.config/zsh"
 {{- end }}
 
