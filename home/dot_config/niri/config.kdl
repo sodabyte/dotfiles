@@ -48,6 +48,8 @@ layout {
         offset x=0 y=5
         color "#0007"
     }
+
+    background-color "transparent"
 }
 
 cursor {
@@ -55,6 +57,16 @@ cursor {
     xcursor-size 20
 
     hide-after-inactive-ms 3000
+}
+
+overview {
+    workspace-shadow {
+      off
+    }
+}
+
+environment {
+    QS_ICON_THEME "Papirus-Dark"
 }
 
 // autostart
@@ -72,7 +84,7 @@ hotkey-overlay {
 prefer-no-csd
 
 // the path where screenshots are saved.
-screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S.png"
+screenshot-path "~/Pictures/Desktop Screenshots/Screenshot_%Y%m%d_%H%M%S.png"
 
 // animation settings.
 animations {
@@ -85,18 +97,13 @@ window-rule {
     open-maximized true
 }
 
-// open the firefox picture-in-picture player as floating by default.
 window-rule {
-    // this app-id regular expression will work for both:
-    // - host firefox (app-id is "firefox")
-    // - flatpak firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="nm-connection-editor"
+    match app-id="nwg-look"
+    match app-id="thunar" title=r#"^Rename "#
+    match app-id="exo-desktop-item-edit" title="Edit Launcher"
     open-floating true
-}
-
-window-rule {
-  match app-id="nm-connection-editor"
-  open-floating true
 }
 
 // block out two password managers from screen capture.
@@ -112,7 +119,7 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="^quickshell-overview$"
+    match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
 }
 
@@ -274,8 +281,9 @@ binds {
     // toggle tabbed column display mode.
     Mod+W { toggle-column-tabbed-display; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    Print { screenshot show-pointer=false; }
+    Ctrl+Print { screenshot-screen show-pointer=false; }
+    Ctrl+Shift+Print { screenshot-screen show-pointer=false write-to-disk=false; }
     Alt+Print { screenshot-window; }
 
     // toggle shortcut inhibition (escape hatch so apps like VMs can capture keys)
