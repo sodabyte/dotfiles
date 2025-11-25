@@ -3,11 +3,13 @@
 {{- $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
-{{ $hasGui := promptBoolOnce . "hasGui" "does this machine have a gui?" }}
+{{- $hasGui := promptBoolOnce . "hasGui" "does this machine have a gui?" -}}
 
 [data]
   osid = {{ $osID | quote }}
   gui = {{ $hasGui }}
-  {{- if lookPath "niri" }}
+  {{ if lookPath "niri" -}}
   niri = true
+  {{- else -}}
+  niri = false
   {{- end }}
