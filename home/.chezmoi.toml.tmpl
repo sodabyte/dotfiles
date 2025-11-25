@@ -1,0 +1,13 @@
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{- $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{ $hasGui := promptBoolOnce . "hasGui" "does this machine have a gui?" }}
+
+[data]
+  osid = {{ $osID | quote }}
+  gui = {{ $hasGui }}
+  {{- if lookPath "niri" }}
+  niri = true
+  {{- end }}

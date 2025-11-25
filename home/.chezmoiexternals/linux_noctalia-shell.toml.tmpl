@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if eq .niri true -}}
 {{ $noctaliaVersion := "3.3.1" -}}
 [".config/quickshell/noctalia-shell"]
 type = "archive"
@@ -6,4 +6,4 @@ url = "https://github.com/noctalia-dev/noctalia-shell/releases/download/v{{ $noc
 exact = true
 stripComponents = 1
 refreshPeriod = "168h"
-{{ end -}}
+{{- end }}

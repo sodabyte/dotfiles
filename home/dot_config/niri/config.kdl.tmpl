@@ -1,3 +1,4 @@
+{{ if eq .niri true -}}
 input {
     keyboard {
         // enable numlock on startup
@@ -295,3 +296,4 @@ binds {
     // powers off the monitors.
     Mod+Shift+P { power-off-monitors; }
 }
+{{- end }}
