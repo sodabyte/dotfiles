@@ -53,6 +53,29 @@ layout {
     background-color "transparent"
 }
 
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#3d3d3d"
+        urgent-color "#c85858"
+        corner-radius 8
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+    binds {
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+    }
+}
+
 cursor {
     xcursor-theme "Bibata-Modern-Classic"
     xcursor-size 20
@@ -248,7 +271,7 @@ binds {
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
     // switches focus between the current and the previous workspace.
-    Mod+Tab { focus-workspace-previous; }
+    // Mod+Tab { focus-workspace-previous; }
 
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
