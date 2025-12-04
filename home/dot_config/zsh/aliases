@@ -43,6 +43,11 @@ function y() {
 
 # eza
 alias ls="eza --icons --group-directories-first"
+alias la="eza -a --icons --group-directories-first"
+alias ll="eza -la --icons --group-directories-first"
+alias lt="eza -aT --icons --group-directories-first"
+alias lsd="eza -aD --icons --group-directories-first"
+alias lsf="eza -af --icons --group-directories-first"
 
 alias adb='HOME="$XDG_DATA_HOME"/android adb'
 alias dosbox='dosbox -conf "$XDG_CONFIG_HOME"/dosbox/dosbox.conf'
