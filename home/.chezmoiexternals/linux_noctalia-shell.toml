@@ -1,8 +1,8 @@
-{{ if eq .niri true -}}
+{{- if eq .niri true -}}
 [".config/quickshell/noctalia-shell"]
   type = "archive"
   url = "https://github.com/noctalia-dev/noctalia-shell/releases/download/{{ (gitHubLatestTag "noctalia-dev/noctalia-shell").Name }}/noctalia-latest.tar.gz"
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-{{- end }}
+{{- end -}}
