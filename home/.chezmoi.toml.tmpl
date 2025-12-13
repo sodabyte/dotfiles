@@ -4,12 +4,9 @@
 {{- end -}}
 
 {{- $hasGui := promptBoolOnce . "hasGui" "does this machine have a gui?" -}}
+{{- $hasNiri := ne (lookPath "niri") "" -}}
 
 [data]
   osid = {{ $osID | quote }}
   gui = {{ $hasGui }}
-  {{ if lookPath "niri" -}}
-  niri = true
-  {{- else -}}
-  niri = false
-  {{- end }}
+  niri = {{ $hasNiri }}
