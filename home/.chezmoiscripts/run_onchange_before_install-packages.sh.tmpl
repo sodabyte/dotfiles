@@ -39,7 +39,7 @@ set -eufo pipefail
 {{ end -}}
 
 {{ $sudo }}pacman -Syu
-{{ $sudo }}pacman -S --needed --no-confirm {{ $packages | join " " }}
+{{ $sudo }}pacman -S --needed --noconfirm {{ $packages | join " " }}
 
 {{ else if eq .osid "android" -}}
 
