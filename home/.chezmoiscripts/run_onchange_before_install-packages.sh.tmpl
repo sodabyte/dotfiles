@@ -1,0 +1,52 @@
+{{ if eq .osid "linux-arch" "android" -}}
+
+{{ $packages := list
+  "atuin"
+  "bat"
+  "eza"
+  "fastfetch"
+  "fzf"
+  "gdu"
+  "git"
+  "git-delta"
+  "glow"
+  "jq"
+  "neovim"
+  "ripgrep"
+  "starship"
+  "tmux"
+  "wget"
+  "yazi"
+  "zsh" -}}
+
+{{ if eq .osid "linux-arch" -}}
+{{  $packages = mustAppend $packages "btop" -}}
+{{ end -}}
+
+{{- if eq .osid "android" -}}
+#!/data/data/com.termux/files/usr/bin/bash
+{{- else -}}
+#!/bin/bash
+{{- end }}
+
+set -eufo pipefail
+
+{{ if eq .osid "linux-arch" -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{  $sudo = "" -}}
+{{ end -}}
+
+{{ $sudo }}pacman -Syu
+{{ $sudo }}pacman -S --needed --no-confirm {{ $packages | join " " }}
+
+{{ else if eq .osid "android" -}}
+
+pkg upgrade -y
+pkg install -y x11-repo root-repo
+pkg install -y {{ $packages | join " " }}
+
+{{ end -}}
+
+{{ end -}}
