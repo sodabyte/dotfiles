@@ -1,0 +1,29 @@
+{{- if eq .niri true -}}
+
+// set open-maximized to true for all windows.
+window-rule {
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="nm-connection-editor"
+    match app-id="nwg-look"
+    match app-id="thunar" title=r#"^Rename "#
+    match app-id="exo-desktop-item-edit" title="Edit Launcher"
+    open-floating true
+}
+
+// block out two password managers from screen capture.
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    block-out-from "screen-capture"
+}
+
+// enable rounded corners for all windows.
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+{{- end -}}
