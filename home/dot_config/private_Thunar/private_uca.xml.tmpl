@@ -1,0 +1,30 @@
+{{- if (lookPath "thunar") -}}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+	<action>
+		<icon>utilities-terminal</icon>
+		<name>Open Terminal Here</name>
+		<submenu></submenu>
+		<unique-id>1761829526846752-1</unique-id>
+		<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+		<description>Open a terminal window in the selected directory</description>
+		<range></range>
+		<patterns>*</patterns>
+		<startup-notify/>
+		<directories/>
+	</action>
+	<action>
+		<icon>zed</icon>
+		<name>Open in Zed</name>
+		<submenu></submenu>
+		<unique-id>1762142390368355-1</unique-id>
+		<command>ZED_WINDOW_DECORATIONS=server zeditor %f</command>
+		<description>Open selected directory in Zed</description>
+		<range></range>
+		<patterns>*</patterns>
+		<directories/>
+	</action>
+</actions>
+
+{{- end -}}
