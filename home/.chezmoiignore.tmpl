@@ -1,3 +1,10 @@
 {{ if ne .osid "android" -}}
 .termux
-{{- end }}
+{{ end -}}
+
+{{ if ne .gui true -}}
+.config/niri
+.config/noctalia
+.config/Thunar
+.config/zed
+{{ end -}}
