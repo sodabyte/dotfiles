@@ -1,12 +1,5 @@
 {{- $arch := .chezmoi.arch -}}
 {{- if eq $arch "amd64" }}{{ $arch = "x86_64" }}{{ end -}}
-[".local/bin/autorestic"]
-  type = "file"
-  url = {{ gitHubLatestReleaseAssetURL "cupcakearmy/autorestic" (printf "autorestic_*_linux_%s.bz2" .chezmoi.arch) | quote }}
-  filter.command = "bzip2"
-  filter.args = ["-d"]
-  executable = true
-
 [".local/bin/redu"]
   type = "file"
   url = {{ gitHubLatestReleaseAssetURL "drdo/redu" (printf "redu-*-linux-%s.bz2" $arch) | quote }}
