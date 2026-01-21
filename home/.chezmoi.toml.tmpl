@@ -10,3 +10,12 @@
   osid = {{ $osID | quote }}
   gui = {{ $hasGui }}
   niri = {{ $hasNiri }}
+
+[merge]
+  command = "nvim"
+  args = [
+    "-d",
+    {{ printf "%q" "{{ .Destination }}" }},
+    {{ printf "%q" "{{ .Source }}" }},
+    {{ printf "%q" "{{ .Target }}" }},
+  ]
