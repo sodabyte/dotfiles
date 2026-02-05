@@ -7,7 +7,11 @@
 ## Install
 
 ```sh
-chezmoi init sodabyte
+# install chezmoi
+sh -c "$(curl -fsLS get.chezmoi.io/lb)"
+
+# install chezmoi and dotfiles
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply sodabyte
 ```
 
 ## Screenshots
